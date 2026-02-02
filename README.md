@@ -1,4 +1,4 @@
-# AWS-Beginner-Projects
+# AWS-Beginner-Projects 
 
 A collection of cool AWS projects to demonstrate proof of concepts (POC) using different AWS services. These projects are designed to help beginners get started with AWS and complete small projects in under 30 minutes.
 
