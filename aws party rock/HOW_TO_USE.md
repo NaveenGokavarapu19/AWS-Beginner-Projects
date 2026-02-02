@@ -24,6 +24,8 @@ Each generated project comes with step-by-step instructions. These instructions 
 ## Step 5: Watch the Usage Video
 For a visual demonstration, refer to the usage video included in the repository. The video will walk you through the process of using the Party Rock tool.
 
+
+Access it by using this link: https://partyrock.aws/u/twin-sparks-1997/2A_p_jSVb/Cloud-Project-Consultant
 ---
 
 Happy coding!
