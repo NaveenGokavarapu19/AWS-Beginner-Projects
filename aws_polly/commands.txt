@@ -7,8 +7,3 @@ aws iam create-policy --policy-name naveen-polly-policy --policy-document file:/
 aws iam create-role --role-name naveen-test-polly-role --assume-role-policy-document file://aws_polly\resources\documents\trust-document.json --profile superadmin
 
 
-# copying local file to s3
-aws s3 cp localfile.txt s3://my-bucket/<sub-folder>/localfile.txt
-
-# bare minimum command for creating lambda
-aws lambda create-function --function-name <> --runtime python3.11 --code S3Bucket="<>",S3Key="infra/naveen/code.zip" --handler main.lambda_handler --package-type Zip --role "" --region us-east-1 --profile superadmin
