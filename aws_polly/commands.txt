@@ -6,5 +6,5 @@ aws iam create-policy --policy-name naveen-polly-policy --policy-document file:/
 # working
 aws iam create-role --role-name naveen-test-polly-role --assume-role-policy-document file://aws_polly\resources\documents\trust-document.json --profile superadmin
 
-arn:aws:iam::701441436243:policy/naveen-polly-policy
+
 naveen-test-polly-role
