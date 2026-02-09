@@ -2,3 +2,14 @@ https://docs.aws.amazon.com/cli/latest/reference/iam/create-policy.html
 https://docs.aws.amazon.com/cli/latest/reference/iam/create-role.html
 https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html
 https://docs.aws.amazon.com/cli/latest/reference/lambda/create-function.html
+
+
+#---------------- s3 -------------------------#
+https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3/bucket/index.html
+https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#resources
+
+
+#--------------------- polly -------------------------------#
+https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/polly.html
+https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/polly/client/synthesize_speech.html
+https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/polly/client/start_speech_synthesis_task.html
