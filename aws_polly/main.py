@@ -49,7 +49,7 @@ def lambda_handler(event, context):
         s3_object_prefix_download = create_path_helper(s3_main_path,s3_prefix,download_path,file_name)
         # file_path = create_path_helper(main_directory,resource_file_path,file_name)
         download_path = create_path_helper(main_directory,download_path,file_name)
-        s3_writer.download_object(s3_object_prefix=s3_object_prefix_download,)
+        s3_writer.download_object(s3_object_prefix=s3_object_prefix_download,download_path=download_path)
         text = read_file(download_path, file_name)
         polly_client = aws_boto3_client.return_client('polly',region_name='us-east-1',profile_name=profile_name)
         response = polly_client.synthesize_speech(

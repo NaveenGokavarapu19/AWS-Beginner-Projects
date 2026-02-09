@@ -1,9 +1,25 @@
 # command for creating iam policy
 
-aws iam create-policy --policy-name naveen-polly-policy --policy-document file://aws_polly\resources\documents\iam-policy.json --profile superadmin
+aws iam create-policy --policy-name naveen-polly-policy --policy-document file://aws_polly\resources\documents\iam-policy.json --profile <profile-name>
 
 
 # working
-aws iam create-role --role-name naveen-test-polly-role --assume-role-policy-document file://aws_polly\resources\documents\trust-document.json --profile superadmin
+```
+I am not sure about the json being used for assume role policy. Need to check and use the 
+command repeatedly to understand it is better.
+```
+aws iam create-role --role-name naveen-test-polly-role --assume-role-policy-document file://aws_polly\resources\documents\trust-document.json --profile <profile-name></profile-name>
 
+``` 
+command to update code. Intially i thought if i mention the zip file and s3 parameters then
+the command would push the zip to s3 but that is not the case
 
+Only one of them must be mentioned. It is either s3 or zip file
+
+```
+
+aws lambda update-function-code `
+--function-name arn:aws:lambda:us-east-1:<account-name>:function:<lambda-name> `
+--zip-file fileb://code.zip `
+--profile <profile-name> `
+--region <us-east-1>
