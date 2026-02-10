@@ -1,5 +1,8 @@
+#------------------------------------- iam ------------------------------------#
 https://docs.aws.amazon.com/cli/latest/reference/iam/create-policy.html 
 https://docs.aws.amazon.com/cli/latest/reference/iam/create-role.html
+
+#------------------------------------ lambda -----------------------------------#
 https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html
 https://docs.aws.amazon.com/cli/latest/reference/lambda/create-function.html
 

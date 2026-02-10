@@ -7,7 +7,8 @@ from zipfile import ZipFile
 
 BucketName = os.environ.get('BUCKET_NAME')
 s3_main_path = os.environ.get('S3_MAIN_PATH')
-s3_prefix = os.environ.get('S3_PREFIX') # sub path where the file will be stored in s3
+s3_prefix_download = os.environ.get('S3_PREFIX') # sub path where the file will be stored in s3
+s3_prefix_upload = os.environ.get('S3_PREFIX_UPLOAD') # sub path where the file will be stored in s3
 main_directory = '/tmp' # where all the resources are present in lambda function
 resource_file_path = 'aws_polly/resources/text_files' # the path where the text file is present.
 file_name = 'story.txt' 
@@ -46,12 +47,13 @@ def lambda_handler(event, context):
     try:
         s3_resource = aws_boto3_client.return_resource('s3',region_name='us-east-1')
         s3_writer = S3Writer(s3_resource,BucketName)
-        s3_object_prefix_download = create_path_helper(s3_main_path,s3_prefix,download_path,file_name)
+        s3_object_prefix_download = create_path_helper(s3_main_path,s3_object_prefix_download,file_name)
+        s3_object_prefix_upload = create_path_helper(s3_main_path,s3_prefix_upload,replace_text_in_file_helper(file_name,'.txt','.zip'))
         # file_path = create_path_helper(main_directory,resource_file_path,file_name)
         download_path = create_path_helper(main_directory,download_path,file_name)
         s3_writer.download_object(s3_object_prefix=s3_object_prefix_download,download_path=download_path)
         text = read_file(download_path, file_name)
-        polly_client = aws_boto3_client.return_client('polly',region_name='us-east-1',profile_name=profile_name)
+        polly_client = aws_boto3_client.return_client('polly',region_name='us-east-1')
         response = polly_client.synthesize_speech(
             OutputFormat='mp3',
             Text=text,
@@ -60,7 +62,9 @@ def lambda_handler(event, context):
         audio_stream = response['AudioStream'].read()
         write_file(result_path,replace_text_in_file_helper(file_name,'.txt','.mp3'),audio_stream)
         zip_file(result_path,replace_text_in_file_helper(file_name,'.txt','.mp3'),zip_path)
-        # s3_writer.put_object(file_path=file_path,file_name=file_name,s3_file_path=s3_file_path,key=s3_object_prefix)
+        zip_file_name = create_path_helper(zip_path,replace_text_in_file_helper(file_name,'.txt','.zip'))
+        s3_writer.put_object(file_path=zip_file_name,s3_object_prefix=s3_object_prefix_upload)
+
         
     except Exception as e:
         print(f"Error: {e=}")

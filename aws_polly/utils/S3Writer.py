@@ -14,13 +14,10 @@ class S3Writer():
         s3_bucket_object = self.return_bucket_object()
         s3_bucket_object.download_file(Key=s3_object_prefix,Filename=dowload_path)
 
-    def put_object(self,file_path,file_name,key=None):
+    def put_object(self,file_path,s3_file_upload_path):
         s3_bucket_object = self.return_bucket_object()
-        resource_path = os.path.join(file_path,file_name)
-        s3_bucket_path = os.path.join(s3_file_path,file_name)
-        file_object = open(resource_path,'rb') 
-        s3_bucket_object.put_object(Key=s3_bucket_path,Body=file_object)
-        print(f"Object {file_name} put in bucket {self.bucket_name}")
+        file_object = open(file_path,'rb') 
+        s3_bucket_object.put_object(Key=s3_file_upload_path,Body=file_object)
         file_object.close()
 
 
